@@ -1,4 +1,4 @@
-import "./SummaryCards.css";
+import "./SummaryCard.css";
 import {
   FaCarSide,
   FaMapMarkedAlt,
