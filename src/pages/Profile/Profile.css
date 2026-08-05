@@ -1,0 +1,19 @@
+.profile-page{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:#f8fafc;
+}
+
+.profile-page h1{
+    font-size:40px;
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.profile-page p{
+    font-size:18px;
+    color:#555;
+}
