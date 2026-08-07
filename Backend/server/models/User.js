@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    fullName: {
+    name: {
       type: String,
       required: true,
       trim: true,
@@ -13,27 +13,24 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
       lowercase: true,
-    },
-
-    mobile: {
-      type: String,
-      required: true,
+      trim: true,
     },
 
     password: {
+      type: String,
+      required: true,
+      minlength: 6,
+    },
+
+    phone: {
       type: String,
       required: true,
     },
 
     role: {
       type: String,
-      enum: ["customer", "admin"],
-      default: "customer",
-    },
-
-    drivingLicense: {
-      type: String,
-      default: "",
+      enum: ["user", "admin"],
+      default: "user",
     },
   },
   {
@@ -41,4 +38,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User;
