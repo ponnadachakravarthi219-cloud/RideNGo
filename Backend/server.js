@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDB from "./config/db.js";
-import authRoutes from "./routes/authRoutes.js";
+import connectDB from "./server/config/db.js";
+import authRoutes from "./server/routes/authRoutes.js";
+import vehicleRoutes from "./server/routes/vehicleRoutes.js";
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/vehicles", vehicleRoutes);
 
 app.get("/", (req, res) => {
   res.send("RideNGo Backend Running...");
