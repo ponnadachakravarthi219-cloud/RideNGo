@@ -6,6 +6,7 @@ import authRoutes from "./server/routes/authRoutes.js";
 import vehicleRoutes from "./server/routes/vehicleRoutes.js";
 import bookingRoutes from "./server/routes/bookingRoutes.js";
 import paymentRoutes from "./server/routes/paymentRoutes.js";
+import adminRoutes from "./server/routes/adminRoutes.js";
 
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use("/api/bookings", bookingRoutes);
 
 app.use("/api/payments", paymentRoutes);
 
+app.use("/api/admin", adminRoutes);
 app.get("/", (req, res) => {
   res.send("RideNGo Backend Running...");
 });
