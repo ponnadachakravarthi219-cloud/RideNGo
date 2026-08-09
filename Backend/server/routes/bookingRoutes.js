@@ -4,16 +4,35 @@ import {
   createBooking,
   getMyBookings,
   cancelBooking,
+  checkAvailability,
 } from "../controllers/bookingController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, createBooking);
+router.get(
+  "/availability",
+  authMiddleware,
+  checkAvailability
+);
 
-router.get("/my", authMiddleware, getMyBookings);
+router.post(
+  "/",
+  authMiddleware,
+  createBooking
+);
 
-router.put("/:id/cancel", authMiddleware, cancelBooking);
+router.get(
+  "/my",
+  authMiddleware,
+  getMyBookings
+);
+
+router.put(
+  "/:id/cancel",
+  authMiddleware,
+  cancelBooking
+);
 
 export default router;

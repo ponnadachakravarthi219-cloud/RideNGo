@@ -1,6 +1,7 @@
 import Booking from "../models/Booking.js";
 import Vehicle from "../models/Vehicle.js";
 
+// CREATE BOOKING
 export const createBooking = async (req, res) => {
   try {
     const {
@@ -23,6 +24,21 @@ export const createBooking = async (req, res) => {
       });
     }
 
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return res.status(400).json({
+        message: "Invalid booking dates",
+      });
+    }
+
+    if (start >= end) {
+      return res.status(400).json({
+        message: "End date must be after start date",
+      });
+    }
+
     const vehicle = await Vehicle.findById(vehicleId);
 
     if (!vehicle) {
@@ -33,7 +49,26 @@ export const createBooking = async (req, res) => {
 
     if (!vehicle.available) {
       return res.status(400).json({
-        message: "Vehicle is not available",
+        message: "Vehicle is currently unavailable",
+      });
+    }
+
+    const overlappingBooking = await Booking.findOne({
+      vehicle: vehicleId,
+      status: {
+        $in: ["pending", "confirmed"],
+      },
+      startDate: {
+        $lt: end,
+      },
+      endDate: {
+        $gt: start,
+      },
+    });
+
+    if (overlappingBooking) {
+      return res.status(409).json({
+        message: "Vehicle is already booked for selected dates",
       });
     }
 
@@ -41,9 +76,10 @@ export const createBooking = async (req, res) => {
       user: req.user.id,
       vehicle: vehicleId,
       pickupLocation,
-      startDate,
-      endDate,
+      startDate: start,
+      endDate: end,
       totalAmount,
+      status: "pending",
     });
 
     res.status(201).json({
@@ -59,6 +95,8 @@ export const createBooking = async (req, res) => {
   }
 };
 
+
+// GET MY BOOKINGS
 export const getMyBookings = async (req, res) => {
   try {
     const bookings = await Booking.find({
@@ -72,7 +110,7 @@ export const getMyBookings = async (req, res) => {
       bookings,
     });
   } catch (error) {
-    console.error("Get Bookings Error:", error);
+    console.error("Get My Bookings Error:", error);
 
     res.status(500).json({
       message: "Server error",
@@ -80,6 +118,82 @@ export const getMyBookings = async (req, res) => {
   }
 };
 
+
+// CHECK VEHICLE AVAILABILITY
+export const checkAvailability = async (req, res) => {
+  try {
+    const {
+      vehicleId,
+      startDate,
+      endDate,
+    } = req.query;
+
+    if (!vehicleId || !startDate || !endDate) {
+      return res.status(400).json({
+        message: "Vehicle ID, start date and end date are required",
+      });
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return res.status(400).json({
+        message: "Invalid dates",
+      });
+    }
+
+    if (start >= end) {
+      return res.status(400).json({
+        message: "End date must be after start date",
+      });
+    }
+
+    const vehicle = await Vehicle.findById(vehicleId);
+
+    if (!vehicle) {
+      return res.status(404).json({
+        message: "Vehicle not found",
+      });
+    }
+
+    if (!vehicle.available) {
+      return res.status(200).json({
+        available: false,
+        message: "Vehicle is currently unavailable",
+      });
+    }
+
+    const booking = await Booking.findOne({
+      vehicle: vehicleId,
+      status: {
+        $in: ["pending", "confirmed"],
+      },
+      startDate: {
+        $lt: end,
+      },
+      endDate: {
+        $gt: start,
+      },
+    });
+
+    res.status(200).json({
+      available: !booking,
+      message: booking
+        ? "Vehicle is not available for selected dates"
+        : "Vehicle is available",
+    });
+  } catch (error) {
+    console.error("Availability Error:", error);
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+
+// CANCEL BOOKING
 export const cancelBooking = async (req, res) => {
   try {
     const booking = await Booking.findOne({
@@ -90,6 +204,12 @@ export const cancelBooking = async (req, res) => {
     if (!booking) {
       return res.status(404).json({
         message: "Booking not found",
+      });
+    }
+
+    if (booking.status === "cancelled") {
+      return res.status(400).json({
+        message: "Booking is already cancelled",
       });
     }
 
