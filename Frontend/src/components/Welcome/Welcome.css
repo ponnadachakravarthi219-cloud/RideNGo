@@ -1,74 +1,676 @@
-.hero{
-    width:100%;
-    height:90vh;
-    background:url("https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1800&q=80");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+/* =========================================
+   WELCOME / HERO SECTION
+========================================= */
+
+.welcome-section {
+  position: relative;
+
+  min-height: 650px;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #172554 45%,
+      #1e3a8a 100%
+    );
 }
 
-.hero-overlay{
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.55);
-    display:flex;
-    align-items:center;
+
+/* Background decoration */
+
+.welcome-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  right: -150px;
+  top: -150px;
+
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.hero-content{
-    width:90%;
-    max-width:1400px;
-    margin:auto;
-    color:#fff;
+
+.welcome-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  border-radius: 50%;
+
+  left: -120px;
+  bottom: -180px;
+
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.tag{
-    display:inline-block;
-    padding:8px 18px;
-    background:#2563eb;
-    border-radius:30px;
-    font-size:14px;
-    margin-bottom:25px;
+
+/* Overlay */
+
+.welcome-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 75% 50%,
+      rgba(59, 130, 246, 0.25),
+      transparent 35%
+    );
 }
 
-.hero h1{
-    font-size:65px;
-    line-height:1.2;
-    margin-bottom:20px;
+
+/* Main container */
+
+.welcome-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 90%;
+
+  max-width: 1250px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+  padding: 70px 0;
 }
 
-.hero p{
-    width:650px;
-    max-width:100%;
-    font-size:18px;
-    line-height:1.8;
-    margin-bottom:35px;
-    color:#f1f1f1;
+
+/* =========================================
+   LEFT CONTENT
+========================================= */
+
+.welcome-content {
+  width: 55%;
+
+  color: white;
 }
 
-.hero-buttons{
-    display:flex;
-    gap:20px;
+
+.tag {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  backdrop-filter: blur(10px);
+
+  margin-bottom: 25px;
 }
 
-.primary-btn{
-    padding:16px 35px;
-    border:none;
-    background:#2563eb;
-    color:#fff;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
+
+.welcome-content h1 {
+  margin: 0;
+
+  font-size: 64px;
+
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
 }
 
-.secondary-btn{
-    padding:16px 35px;
-    border:2px solid #fff;
-    background:transparent;
-    color:#fff;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
+
+.welcome-content h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #ff9933,
+      #ffffff,
+      #138808
+    );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+.welcome-content p {
+  max-width: 650px;
+
+  margin: 25px 0;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-buttons {
+  display: flex;
+
+  gap: 15px;
+
+  margin-top: 30px;
+}
+
+
+.primary-btn,
+.secondary-btn {
+  padding: 15px 27px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.primary-btn {
+  border: none;
+
+  background: #ff9933;
+
+  color: #111827;
+
+  box-shadow:
+    0 10px 25px rgba(255, 153, 51, 0.25);
+}
+
+
+.primary-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 30px rgba(255, 153, 51, 0.35);
+}
+
+
+.secondary-btn {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  backdrop-filter: blur(10px);
+}
+
+
+.secondary-btn:hover {
+  transform: translateY(-4px);
+
+  background: rgba(255, 255, 255, 0.16);
+}
+
+
+/* =========================================
+   HERO FEATURES
+========================================= */
+
+.hero-features {
+  display: flex;
+
+  gap: 15px;
+
+  margin-top: 40px;
+}
+
+
+.hero-feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 15px;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(10px);
+}
+
+
+.hero-feature > span {
+  font-size: 25px;
+}
+
+
+.hero-feature strong {
+  display: block;
+
+  font-size: 13px;
+}
+
+
+.hero-feature small {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================
+   RIGHT VISUAL
+========================================= */
+
+.welcome-visual {
+  width: 45%;
+
+  min-height: 450px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.vehicle-circle {
+  width: 350px;
+
+  height: 350px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 180px;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);
+
+  animation:
+    floatingCar 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   OFFER BADGE
+========================================= */
+
+.offer-badge {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 35px;
+
+  right: 5px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #111827;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.2);
+
+  animation:
+    floatingBadge 3s ease-in-out infinite;
+}
+
+
+.offer-badge > span {
+  font-size: 25px;
+}
+
+
+.offer-badge strong {
+  display: block;
+
+  font-size: 13px;
+}
+
+
+.offer-badge small {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #16a34a;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   FLOATING CARDS
+========================================= */
+
+.floating-card {
+  position: absolute;
+
+  padding: 12px 17px;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.card-one {
+  left: 0;
+
+  bottom: 100px;
+
+  animation:
+    floatingBadge 3.5s ease-in-out infinite;
+}
+
+
+.card-two {
+  right: 0;
+
+  bottom: 30px;
+
+  animation:
+    floatingBadge 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes floatingCar {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes floatingBadge {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .welcome-container {
+    width: 92%;
+
+    gap: 25px;
+  }
+
+
+  .welcome-content h1 {
+    font-size: 48px;
+  }
+
+
+  .vehicle-circle {
+    width: 280px;
+
+    height: 280px;
+
+    font-size: 140px;
+  }
+
+
+  .hero-feature {
+    padding: 10px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+  .welcome-section {
+    min-height: auto;
+  }
+
+
+  .welcome-container {
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 60px 0;
+  }
+
+
+  .welcome-content {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+
+  .welcome-content h1 {
+    font-size: 42px;
+
+    letter-spacing: -1px;
+  }
+
+
+  .welcome-content p {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+
+  .hero-buttons {
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+
+  .hero-features {
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+
+  .welcome-visual {
+    width: 100%;
+
+    min-height: 350px;
+  }
+
+
+  .vehicle-circle {
+    width: 250px;
+
+    height: 250px;
+
+    font-size: 120px;
+  }
+
+
+  .offer-badge {
+    right: 5%;
+  }
+
+
+  .card-one {
+    left: 5%;
+  }
+
+
+  .card-two {
+    right: 5%;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+  .welcome-container {
+    width: 90%;
+  }
+
+
+  .welcome-content h1 {
+    font-size: 34px;
+  }
+
+
+  .tag {
+    font-size: 11px;
+
+    padding: 8px 12px;
+  }
+
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 13px 20px;
+
+    font-size: 13px;
+  }
+
+
+  .hero-feature {
+    padding: 9px;
+  }
+
+
+  .hero-feature > span {
+    font-size: 20px;
+  }
+
+
+  .vehicle-circle {
+    width: 210px;
+
+    height: 210px;
+
+    font-size: 95px;
+  }
+
+
+  .floating-card {
+    font-size: 10px;
+
+    padding: 9px 11px;
+  }
+
 }
