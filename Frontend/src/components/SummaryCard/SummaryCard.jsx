@@ -1,63 +1,71 @@
 import "./SummaryCard.css";
-import {
-  FaCarSide,
-  FaMapMarkedAlt,
-  FaUsers,
-  FaStar,
-} from "react-icons/fa";
 
-function SummaryCards() {
-  const cards = [
+function SummaryCard() {
+  const summaryData = [
     {
-      id: 1,
-      icon: <FaCarSide />,
-      number: "2,500+",
-      title: "Available Drivers",
-      color: "#2563eb",
+      icon: "🚗",
+      number: "100+",
+      title: "Cars Available",
+      description: "Ready for your journey",
     },
     {
-      id: 2,
-      icon: <FaMapMarkedAlt />,
-      number: "120+",
-      title: "Cities Covered",
-      color: "#10b981",
+      icon: "🏍️",
+      number: "150+",
+      title: "Bikes Available",
+      description: "Affordable & convenient",
     },
     {
-      id: 3,
-      icon: <FaUsers />,
-      number: "500K+",
-      title: "Happy Customers",
-      color: "#f59e0b",
+      icon: "🛺",
+      number: "80+",
+      title: "Autos Available",
+      description: "Quick city rides",
     },
     {
-      id: 4,
-      icon: <FaStar />,
-      number: "4.9",
+      icon: "⭐",
+      number: "4.9/5",
       title: "Customer Rating",
-      color: "#ef4444",
+      description: "Trusted by riders",
     },
   ];
 
   return (
-    <section className="summary">
+    <section className="summary-section">
+
       <div className="summary-container">
-        {cards.map((card) => (
-          <div className="summary-card" key={card.id}>
-            <div
-              className="summary-icon"
-              style={{ background: card.color }}
-            >
-              {card.icon}
+
+        {summaryData.map((item, index) => (
+          <div
+            className="summary-card"
+            key={index}
+          >
+
+            <div className="summary-icon">
+              {item.icon}
             </div>
 
-            <h2>{card.number}</h2>
+            <div className="summary-content">
 
-            <p>{card.title}</p>
+              <h2>
+                {item.number}
+              </h2>
+
+              <h3>
+                {item.title}
+              </h3>
+
+              <p>
+                {item.description}
+              </p>
+
+            </div>
+
           </div>
         ))}
+
       </div>
+
     </section>
   );
 }
 
-export default SummaryCards;
+export default SummaryCard;

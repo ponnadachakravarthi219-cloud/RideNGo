@@ -1,63 +1,114 @@
 import "./Services.css";
-import {
-  FaTaxi,
-  FaBusinessTime,
-  FaPlaneDeparture,
-  FaRoute,
-} from "react-icons/fa";
+
+import cityCar from "../../assets/services/city-car.jpg";
+import bikeRental from "../../assets/services/bike-rental.jpg";
+import airportCar from "../../assets/services/airport-car.jpg";
+import roadTripCar from "../../assets/services/road-trip-car.jpg";
 
 function Services() {
   const services = [
     {
       id: 1,
-      icon: <FaTaxi />,
+      image: cityCar,
       title: "City Rides",
-      desc: "Quick and affordable rides across your city with verified drivers.",
+      desc: "Quick and affordable rides across your city with comfortable vehicles.",
+      button: "Book City Ride",
     },
     {
       id: 2,
-      icon: <FaBusinessTime />,
-      title: "Corporate Travel",
-      desc: "Professional rides for business meetings and office transportation.",
+      image: bikeRental,
+      title: "Bike Rental",
+      desc: "Rent reliable bikes for daily travel, college trips and weekend rides.",
+      button: "Rent a Bike",
     },
     {
       id: 3,
-      icon: <FaPlaneDeparture />,
+      image: airportCar,
       title: "Airport Pickup",
-      desc: "On-time airport pickup and drop services available 24/7.",
+      desc: "Comfortable and convenient airport pickup and drop services.",
+      button: "Book Airport Ride",
     },
     {
       id: 4,
-      icon: <FaRoute />,
+      image: roadTripCar,
       title: "Outstation Trips",
-      desc: "Comfortable long-distance rides at affordable prices.",
+      desc: "Enjoy comfortable long-distance journeys with our rental vehicles.",
+      button: "Plan Your Trip",
     },
   ];
 
   return (
-    <section className="services">
+    <section className="services-section" id="services">
+
       <div className="services-header">
-        <h5>OUR SERVICES</h5>
-        <h2>Ride Services We Provide</h2>
+
+        <span className="services-tag">
+          🚗 RIDE N GO SERVICES
+        </span>
+
+        <h2>
+          Ride Services
+          <span> We Provide</span>
+        </h2>
+
         <p>
-          Experience safe, reliable and comfortable rides designed for every
-          travel need.
+          Choose from cars, bikes and convenient travel services
+          designed for every journey.
         </p>
+
       </div>
+
 
       <div className="services-grid">
+
         {services.map((service) => (
-          <div className="service-card" key={service.id}>
-            <div className="service-icon">{service.icon}</div>
+          <div
+            className="service-card"
+            key={service.id}
+          >
 
-            <h3>{service.title}</h3>
+            {/* IMAGE */}
 
-            <p>{service.desc}</p>
+            <div className="service-image">
 
-            <button>Learn More</button>
+              <img
+                src={service.image}
+                alt={service.title}
+              />
+
+              <div className="image-overlay">
+                RideNGo
+              </div>
+
+            </div>
+
+
+            {/* CONTENT */}
+
+            <div className="service-content">
+
+              <h3>
+                {service.title}
+              </h3>
+
+              <p>
+                {service.desc}
+              </p>
+
+              <button
+                className="service-btn"
+              >
+                {service.button}
+                <span>→</span>
+              </button>
+
+            </div>
+
           </div>
         ))}
+
       </div>
+
     </section>
   );
 }

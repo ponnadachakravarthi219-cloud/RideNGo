@@ -1,8 +1,8 @@
 import "./Fleet.css";
-import sedan from "../../assets/images/sedan.png";
-import suv from "../../assets/images/suv.png";
-import hatchback from "../../assets/images/hatchback.png";
-import luxury from "../../assets/images/luxury.png";
+// import sedan from "../../assets/images/sedan.png";
+// import suv from "../../assets/images/suv.png";
+// import hatchback from "../../assets/images/hatchback.png";
+// import luxury from "../../assets/images/luxury.png";
 
 function Fleet() {
 
