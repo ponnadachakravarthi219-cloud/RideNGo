@@ -1,0 +1,739 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.offers-page {
+  min-height: 100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color: #111827;
+
+  /*
+    INDIAN TRICOLOUR BACKGROUND
+  */
+
+  background:
+    linear-gradient(
+      to bottom,
+
+      #ff9933 0%,
+      #ff9933 33.33%,
+
+      #ffffff 33.33%,
+      #ffffff 66.66%,
+
+      #12cf01 66.66%,
+      #11c700 100%
+    );
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.offers-header {
+  height: 80px;
+
+  padding: 0 7%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: rgba(254, 159, 42, 0.92);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  position: relative;
+
+  z-index: 10;
+
+  color:#ffffff
+}
+
+
+/* Logo */
+
+.logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 28px;
+
+  font-weight: 900;
+
+  color: #edeff1;
+}
+
+.logo:first-letter {
+  font-size: 30px;
+}
+
+
+/* Independence Header */
+
+.independence-title {
+  font-size: 14px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  color: #111827;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.independence-main {
+  min-height: 650px;
+
+  padding: 60px 8%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 50px;
+}
+
+
+/* =========================================
+   LEFT CONTENT
+========================================= */
+
+.independence-content {
+  width: 52%;
+
+  max-width: 650px;
+}
+
+
+/* Small Title */
+
+.small-title {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  color: #111827;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Main Heading */
+
+.independence-content h1 {
+  margin: 25px 0 5px;
+
+  font-size: 65px;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  color: #111827;
+}
+
+
+/* Second Heading */
+
+.independence-content h2 {
+  margin: 15px 0;
+
+  font-size: 42px;
+
+  line-height: 1.1;
+
+  font-weight: 900;
+
+  color: #02ea44;
+}
+
+
+/* Description */
+
+.independence-content p {
+  max-width: 570px;
+
+  margin: 10px 0;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+
+  color: #222222;
+}
+
+
+/* Discount */
+
+.discount {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 15px 25px;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.discount strong {
+  color: #e85d04;
+
+  font-size: 28px;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.continue-btn {
+  display: block;
+
+  margin-top: 25px;
+
+  padding: 16px 30px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #012c89;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.continue-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================
+   RIGHT VISUAL
+========================================= */
+
+.independence-visual {
+  width: 48%;
+
+  min-height: 500px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================
+   ASHOKA CHAKRA
+========================================= */
+
+.chakra {
+  width: 330px;
+
+  height: 330px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: absolute;
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  border:
+    7px solid #000080;
+
+  color: #000080;
+
+  font-size: 190px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.15);
+
+  animation:
+    rotateChakra 18s linear infinite;
+}
+
+
+/* =========================================
+   VEHICLES
+========================================= */
+
+.car {
+  position: relative;
+
+  z-index: 3;
+
+  margin-left: 40px;
+
+  font-size: 130px;
+
+  filter:
+    drop-shadow(
+      0 15px 10px rgba(0, 0, 0, 0.2)
+    );
+
+  animation:
+    floating 3s ease-in-out infinite;
+}
+
+.bike {
+  position: absolute;
+
+  z-index: 4;
+
+  bottom: 80px;
+
+  right: 10px;
+
+  font-size: 80px;
+
+  animation:
+    floating 3.5s ease-in-out infinite;
+}
+
+
+/* =========================================
+   RIDE TEXT
+========================================= */
+
+.ride-text {
+  position: absolute;
+
+  right: 0;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  z-index: 5;
+}
+
+.ride-text span {
+  padding: 7px 12px;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.ride-text span:nth-child(1) {
+  color: #ff9933;
+}
+
+.ride-text span:nth-child(2) {
+  color: #000080;
+}
+
+.ride-text span:nth-child(3) {
+  color: #02ea44;
+}
+
+
+/* =========================================
+   FREEDOM SECTION
+========================================= */
+
+.freedom-section {
+  padding: 35px 20px 45px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.tricolor-line {
+  width: 300px;
+
+  height: 7px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.tricolor-line span {
+  flex: 1;
+}
+
+.saffron {
+  background: #ff9933;
+}
+
+.white {
+  background: #d9d7ef;
+}
+
+.green {
+  background: #02ea44;
+}
+
+.freedom-section h2 {
+  margin: 10px 0;
+
+  font-size: 27px;
+
+  font-weight: 900;
+
+  color: #111827;
+}
+
+.freedom-section p {
+  margin: 0;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #333333;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.offers-footer {
+  padding: 20px;
+
+  text-align: center;
+
+  background: #02ea44;
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes rotateChakra {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .independence-main {
+    padding: 50px 5%;
+  }
+
+  .independence-content h1 {
+    font-size: 50px;
+  }
+
+  .independence-content h2 {
+    font-size: 34px;
+  }
+
+  .chakra {
+    width: 260px;
+
+    height: 260px;
+
+    font-size: 150px;
+  }
+
+  .car {
+    font-size: 100px;
+  }
+
+  .bike {
+    font-size: 65px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+  .offers-header {
+    height: auto;
+
+    padding: 15px 20px;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .independence-title {
+    font-size: 11px;
+  }
+
+
+  .independence-main {
+    min-height: auto;
+
+    padding: 50px 25px;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 20px;
+  }
+
+
+  .independence-content {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    flex-direction: column;
+  }
+
+
+  .independence-content h1 {
+    font-size: 42px;
+
+    margin-top: 20px;
+  }
+
+
+  .independence-content h2 {
+    font-size: 30px;
+  }
+
+
+  .independence-content p {
+    font-size: 14px;
+  }
+
+
+  .discount {
+    font-size: 15px;
+  }
+
+
+  .discount strong {
+    font-size: 23px;
+  }
+
+
+  .independence-visual {
+    width: 100%;
+
+    min-height: 350px;
+  }
+
+
+  .chakra {
+    width: 220px;
+
+    height: 220px;
+
+    font-size: 125px;
+  }
+
+
+  .car {
+    font-size: 80px;
+
+    margin-left: 20px;
+  }
+
+
+  .bike {
+    font-size: 55px;
+
+    bottom: 40px;
+
+    right: 5%;
+  }
+
+
+  .ride-text {
+    right: 0;
+  }
+
+
+  .freedom-section h2 {
+    font-size: 21px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+  .independence-content h1 {
+    font-size: 35px;
+  }
+
+  .independence-content h2 {
+    font-size: 25px;
+  }
+
+  .small-title {
+    font-size: 10px;
+  }
+
+  .chakra {
+    width: 180px;
+
+    height: 180px;
+
+    font-size: 100px;
+  }
+
+  .car {
+    font-size: 65px;
+  }
+
+  .bike {
+    font-size: 45px;
+  }
+
+  .ride-text span {
+    font-size: 9px;
+  }
+
+  .tricolor-line {
+    width: 220px;
+  }
+
+}
