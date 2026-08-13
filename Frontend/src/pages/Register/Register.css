@@ -1,167 +1,1236 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Poppins,sans-serif;
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
 }
 
-.register-page{
 
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#2563eb,#4f46e5);
+/* =========================================
+   REGISTER WRAPPER
+========================================= */
+
+.register-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    background: #020617;
+}
+
+
+/* =========================================
+   FULL SCREEN CAR INTRO
+========================================= */
+
+.car-intro {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 28%,
+            #142f57 0%,
+            #07111f 45%,
+            #020617 100%
+        );
+
+    color: #ffffff;
+
+    z-index: 9999;
+}
+
+
+/* =========================================
+   INTRO CONTENT
+========================================= */
+
+.intro-content {
+    position: relative;
+
+    z-index: 50;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 55px;
+
+    text-align: center;
+}
+
+
+.intro-logo {
+    font-size: 58px;
+
+    font-weight: 900;
+
+    color: #ffffff;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 25px
+        rgba(255, 38, 53, 0.35);
+}
+
+
+.intro-title {
+    margin-top: 8px;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+.intro-subtitle {
+    margin-top: 7px;
+
+    font-size: 14px;
+
+    color: #9caac0;
+}
+
+
+/* =========================================
+   CAR AREA
+   EXACT CENTER
+========================================= */
+
+.car-area {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 650px;
+    height: 300px;
+
+    transform:
+        translate(-50%, -42%);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 30;
+}
+
+
+/* =========================================
+   CAR GLOW
+========================================= */
+
+.car-glow {
+    position: absolute;
+
+    width: 500px;
+    height: 120px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 38, 53, 0.35),
+            transparent 70%
+        );
+
+    filter: blur(25px);
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   CAR IMAGE
+========================================= */
+
+.animated-car {
+    position: relative;
+
+    display: block;
+
+    width: 600px;
+
+    max-width: 80vw;
+
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 3;
+
+    border-radius: 8px;
+
+    filter:
+        drop-shadow(
+            0 20px 35px
+            rgba(0, 0, 0, 0.75)
+        );
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* =========================================
+   CAR STARTED
+========================================= */
+
+.car-started .animated-car {
+
+    animation:
+        car-drive
+        3.2s
+        cubic-bezier(
+            0.65,
+            0,
+            1,
+            1
+        )
+        forwards;
+}
+
+
+/* =========================================
+   CAR DRIVE ANIMATION
+========================================= */
+
+@keyframes car-drive {
+
+    0% {
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+    8% {
+        transform:
+            translateX(-8px)
+            scale(1.01);
+    }
+
+    15% {
+        transform:
+            translateX(10px)
+            scale(1.02);
+    }
+
+    22% {
+        transform:
+            translateX(-8px)
+            scale(1.03);
+    }
+
+    30% {
+        transform:
+            translateX(10px)
+            scale(1.04);
+    }
+
+    100% {
+        transform:
+            translateX(120vw)
+            scale(1.1);
+    }
+}
+
+
+/* =========================================
+   KEY BUTTON
+========================================= */
+
+.car-key {
+
+    position: absolute;
+
+    top: calc(50% + 145px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    min-width: 210px;
+
+    height: 58px;
+
+    padding: 0 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    border:
+        1px solid
+        rgba(255, 38, 53, 0.5);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff172d,
+            #d80018
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    box-shadow:
+        0 10px 30px
+        rgba(255, 38, 53, 0.4);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* KEY ICON */
+
+.car-key svg {
+
+    font-size: 21px;
+
+    color: #ffffff;
 
 }
 
-.register-container{
 
-    width:1100px;
-    max-width:95%;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 20px 50px rgba(0,0,0,.2);
+/* KEY HOVER */
+
+.car-key:hover {
+
+    transform:
+        translateX(-50%)
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255, 38, 53, 0.6);
+}
+
+
+/* KEY PRESS */
+
+.car-key:active {
+
+    transform:
+        translateX(-50%)
+        scale(0.94);
 
 }
 
-.register-left{
 
-    padding:60px;
+/* =========================================
+   PRESS ENTER MESSAGE
+========================================= */
+
+.press-enter {
+
+    position: absolute;
+
+    top: calc(50% + 215px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #9caac0;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    z-index: 100;
+
+    animation:
+        pulse-text
+        1.5s
+        infinite;
+}
+
+
+.press-enter strong {
+
+    color: #ff2635;
 
 }
 
-.register-left h1{
 
-    margin-bottom:10px;
+/* =========================================
+   PRESS TEXT ANIMATION
+========================================= */
 
-}
+@keyframes pulse-text {
 
-.register-left p{
+    0%,
+    100% {
 
-    color:#666;
-    margin-bottom:35px;
+        opacity: 0.45;
 
-}
+    }
 
-.input-box{
+    50% {
 
-    display:flex;
-    align-items:center;
-    border:1px solid #ddd;
-    border-radius:10px;
-    margin-bottom:20px;
-    padding:15px;
+        opacity: 1;
+
+    }
 
 }
 
-.input-box input{
 
-    width:100%;
-    border:none;
-    outline:none;
-    margin-left:10px;
-    font-size:15px;
+/* =========================================
+   ENGINE TEXT
+========================================= */
+
+.engine-text {
+
+    position: absolute;
+
+    top: calc(50% + 145px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #ff2635;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    white-space: nowrap;
+
+    z-index: 100;
+
+    animation:
+        engine-blink
+        0.4s
+        infinite
+        alternate;
+}
+
+
+/* =========================================
+   ENGINE BLINK
+========================================= */
+
+@keyframes engine-blink {
+
+    from {
+
+        opacity: 0.35;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
 
 }
 
-.icon{
 
-    color:#2563eb;
+/* =========================================
+   ROAD
+========================================= */
+
+.road {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 150px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #07111f,
+            #020617
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.05
+        );
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   ROAD LINE
+========================================= */
+
+.road-line {
+
+    position: absolute;
+
+    top: 55px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #ffffff 0px,
+            #ffffff 80px,
+            transparent 80px,
+            transparent 150px
+        );
+
+    opacity: 0.25;
+
+    animation:
+        road-move
+        0.7s
+        linear
+        infinite;
+}
+
+
+/* =========================================
+   ROAD MOVEMENT
+========================================= */
+
+@keyframes road-move {
+
+    from {
+
+        transform:
+            translateX(0);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-150px);
+
+    }
 
 }
 
-.eye{
 
-    cursor:pointer;
+/* =========================================
+   ROAD LIGHTS
+========================================= */
+
+.road-light {
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #ff2635;
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            255,
+            38,
+            53,
+            0.8
+        );
+
+    z-index: 7;
+}
+
+
+/* LIGHT 1 */
+
+.light-one {
+
+    top: 28%;
+
+    left: 13%;
 
 }
 
-.register-btn{
 
-    width:100%;
-    height:50px;
-    border:none;
-    background:#2563eb;
-    color:white;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-    margin-bottom:15px;
+/* LIGHT 2 */
+
+.light-two {
+
+    top: 23%;
+
+    right: 20%;
 
 }
 
-.google-btn{
 
-    width:100%;
-    height:50px;
-    border:1px solid #ddd;
-    background:white;
-    border-radius:10px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
+/* LIGHT 3 */
+
+.light-three {
+
+    top: 48%;
+
+    left: 6%;
 
 }
 
-.login-link{
-    text-align:center;
-    margin-top:25px;
+
+/* =========================================
+   REGISTER CONTAINER
+========================================= */
+
+.register-container {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    background: #0f1b31;
+
+    border-radius: 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        #34445f;
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+
+    animation:
+        register-appear
+        0.8s
+        ease
+        forwards;
+}
+
+
+/* =========================================
+   REGISTER APPEAR
+========================================= */
+
+@keyframes register-appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(1.03);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
 
 }
 
-.login-link a{
 
-    margin-left:5px;
-    text-decoration:none;
-    color:#2563eb;
-    font-weight:600;
+/* =========================================
+   REGISTER LEFT
+========================================= */
 
-}
+.register-left {
 
-.register-right{
+    padding: 60px;
 
-    background:linear-gradient(135deg,#2563eb,#4f46e5);
-    color:white;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:60px;
+    color: #ffffff;
+
+    background: #0f1b31;
 
 }
 
-.register-right h2{
 
-    font-size:48px;
-    margin-bottom:20px;
+.register-left h1 {
 
-}
+    margin-bottom: 10px;
 
-.register-right p{
-
-    text-align:center;
-    font-size:18px;
+    color: #ffffff;
 
 }
 
-@media(max-width:900px){
 
-.register-container{
+.register-left p {
 
-grid-template-columns:1fr;
+    color: #9caac0;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* =========================================
+   INPUT BOX
+========================================= */
+
+.input-box {
+
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid
+        #34445f;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    padding: 15px;
+
+    background: #07111f;
+
+    transition:
+        0.3s;
 
 }
 
-.register-right{
 
-display:none;
+.input-box:focus-within {
+
+    border-color:
+        #ff2635;
+
+    box-shadow:
+        0 0 12px
+        rgba(
+            255,
+            38,
+            53,
+            0.2
+        );
 
 }
+
+
+.input-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    margin-left: 10px;
+
+    font-size: 15px;
+
+    background: transparent;
+
+    color: #ffffff;
+
+}
+
+
+.input-box input::placeholder {
+
+    color: #9caac0;
+
+}
+
+
+/* FILE INPUT */
+
+.input-box input[type="file"] {
+
+    color: #9caac0;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.icon {
+
+    color: #ff2635;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+========================================= */
+
+.register-btn {
+
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff172d,
+            #d80018
+        );
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    margin-bottom: 15px;
+
+    transition:
+        0.3s;
+
+}
+
+
+.register-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            255,
+            38,
+            53,
+            0.3
+        );
+
+}
+
+
+.register-btn:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.register-message {
+
+    text-align: center;
+
+    color: #ff6573 !important;
+
+    margin:
+        10px 0 !important;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================
+   LOGIN LINK
+========================================= */
+
+.login-link {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #9caac0;
+
+}
+
+
+.login-link a {
+
+    margin-left: 5px;
+
+    text-decoration: none;
+
+    color: #ff2635;
+
+    font-weight: 600;
+
+}
+
+
+.login-link a:hover {
+
+    color: #ff6573;
+
+}
+
+
+/* =========================================
+   REGISTER RIGHT
+========================================= */
+
+.register-right {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2635,
+            #d80018,
+            #142f57
+        );
+
+    color: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 60px;
+
+}
+
+
+.register-right h2 {
+
+    font-size: 48px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.register-right p {
+
+    text-align: center;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .register-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .register-right {
+
+        display: none;
+
+    }
+
+
+    .register-left {
+
+        padding:
+            35px 25px;
+
+    }
+
+
+    .intro-logo {
+
+        font-size: 42px;
+
+    }
+
+
+    .intro-title {
+
+        font-size: 20px;
+
+    }
+
+
+    .intro-subtitle {
+
+        font-size: 12px;
+
+    }
+
+
+    .car-area {
+
+        width: 100%;
+
+        top: 48%;
+
+    }
+
+
+    .animated-car {
+
+        width: 480px;
+
+        max-width: 80vw;
+
+    }
+
+
+    .car-key {
+
+        top: calc(48% + 135px);
+
+    }
+
+
+    .press-enter {
+
+        top: calc(48% + 205px);
+
+    }
+
+
+    .engine-text {
+
+        top: calc(48% + 135px);
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+
+        padding-top: 40px;
+
+    }
+
+
+    .intro-logo {
+
+        font-size: 36px;
+
+    }
+
+
+    .intro-title {
+
+        font-size: 18px;
+
+    }
+
+
+    .intro-subtitle {
+
+        font-size: 11px;
+
+        padding:
+            0 20px;
+
+    }
+
+
+    .car-area {
+
+        top: 46%;
+
+        width: 100%;
+
+        height: 220px;
+
+    }
+
+
+    .animated-car {
+
+        width: 330px;
+
+        max-width: 85vw;
+
+    }
+
+
+    .car-glow {
+
+        width: 300px;
+
+        height: 80px;
+
+    }
+
+
+    .car-key {
+
+        top: calc(46% + 120px);
+
+        min-width: 185px;
+
+        height: 52px;
+
+        font-size: 13px;
+
+    }
+
+
+    .press-enter {
+
+        top: calc(46% + 185px);
+
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    .engine-text {
+
+        top: calc(46% + 120px);
+
+        font-size: 12px;
+
+    }
+
+
+    .road {
+
+        height: 120px;
+
+    }
+
+
+    .road-line {
+
+        top: 45px;
+
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL SCREEN
+========================================= */
+
+@media (max-width: 400px) {
+
+    .intro-logo {
+
+        font-size: 31px;
+
+    }
+
+
+    .intro-title {
+
+        font-size: 16px;
+
+    }
+
+
+    .animated-car {
+
+        width: 290px;
+
+    }
+
+
+    .car-key {
+
+        top: calc(46% + 105px);
+
+    }
+
+
+    .press-enter {
+
+        top: calc(46% + 170px);
+
+    }
 
 }

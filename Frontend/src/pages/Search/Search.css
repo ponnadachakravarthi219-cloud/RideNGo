@@ -1,51 +1,93 @@
-.search-page{
-    width:100%;
-    min-height:100vh;
-    padding:80px;
-    background:#f8fafc;
+.search-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px;
+    background: #020617;
+    color: #ffffff;
 }
 
-.search-header{
-    text-align:center;
-    margin-bottom:50px;
+.search-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.search-header h1{
-    font-size:42px;
-    color:#111827;
+.search-header h1 {
+    font-size: 42px;
+    color: #ffffff;
 }
 
-.search-header p{
-    color:#6b7280;
-    margin-top:10px;
+.search-header p {
+    color: #9caac0;
+    margin-top: 10px;
 }
 
-.search-box{
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:20px;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+.search-box {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    background: #0f1b31;
+    padding: 30px;
+    border-radius: 15px;
+
+    border: 1px solid #34445f;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .search-box input,
-.search-box select{
-    height:50px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    padding:0 15px;
-    outline:none;
+.search-box select {
+    height: 50px;
+
+    border: 1px solid #34445f;
+    border-radius: 8px;
+
+    padding: 0 15px;
+
+    outline: none;
+
+    background: #07111f;
+    color: #ffffff;
 }
 
-.search-box button{
-    border:none;
-    background:#2563eb;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
+.search-box input::placeholder {
+    color: #9caac0;
+}
+
+.search-box input:focus,
+.search-box select:focus {
+    border-color: #ff2635;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 38, 53, 0.12);
+}
+
+.search-box button {
+    border: none;
+
+    background: linear-gradient(
+        90deg,
+        #ff172d,
+        #d80018
+    );
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(255, 38, 53, 0.3);
 }

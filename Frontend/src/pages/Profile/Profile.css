@@ -1,19 +1,29 @@
-.profile-page{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background:#f8fafc;
+.profile-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #020617;
+
+    color: #ffffff;
 }
 
-.profile-page h1{
-    font-size:40px;
-    color:#2563eb;
-    margin-bottom:10px;
+.profile-page h1 {
+    font-size: 40px;
+
+    color: #ff2635;
+
+    margin-bottom: 10px;
 }
 
-.profile-page p{
-    font-size:18px;
-    color:#555;
+.profile-page p {
+    font-size: 18px;
+
+    color: #9caac0;
 }
