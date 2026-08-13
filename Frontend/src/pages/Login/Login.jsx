@@ -5,19 +5,21 @@ import {
   FaLock,
   FaEye,
   FaGoogle,
+  FaKey,
+  FaMotorcycle,
 } from "react-icons/fa";
 
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
-
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import API from "../../Axios/api";
+import bike from "../../assets/bike-rental.jpg";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [started, setStarted] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -27,6 +29,40 @@ function Login() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  // Start bike animation
+  const startRide = () => {
+    if (started) return;
+
+    setStarted(true);
+
+    // Show login after bike animation
+    setTimeout(() => {
+      setShowLogin(true);
+    }, 3000);
+  };
+
+  // Enter / Space key starts the bike
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (
+        (e.key === "Enter" || e.key === " ") &&
+        !started
+      ) {
+        e.preventDefault();
+        startRide();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [started]);
 
   const handleChange = (e) => {
     setFormData({
@@ -40,7 +76,6 @@ function Login() {
 
     setMessage("");
 
-    // Check fields
     if (!formData.email || !formData.password) {
       setMessage("Please enter email and password");
       return;
@@ -49,7 +84,6 @@ function Login() {
     try {
       setLoading(true);
 
-      // Send login request to backend
       const response = await API.post("/auth/login", {
         email: formData.email,
         password: formData.password,
@@ -59,12 +93,10 @@ function Login() {
 
       console.log("Login Response:", data);
 
-      // Save JWT token
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
 
-      // Save user
       if (data.user) {
         localStorage.setItem(
           "user",
@@ -83,7 +115,6 @@ function Login() {
         data.message || "Login successful!"
       );
 
-      // Go to dashboard
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000);
@@ -98,7 +129,7 @@ function Login() {
 
       setMessage(
         error.response?.data?.message ||
-        "Login failed. Please check your email and password."
+          "Login failed. Please check your email and password."
       );
 
     } finally {
@@ -107,121 +138,250 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-page">
 
-      <div className="login-left">
+      {/* ================= BIKE INTRO ================= */}
 
-        <h1>Welcome Back 👋</h1>
+      {!showLogin && (
+        <div
+          className={`bike-intro ${
+            started ? "ride-started" : ""
+          }`}
+        >
 
-        <p>
-          Login to continue your RideNGo journey.
-        </p>
+          <div className="intro-overlay"></div>
 
-        <form onSubmit={handleSubmit}>
+          <div className="brand">
+            <h1>
+              Ride<span>N</span>Go
+            </h1>
 
-          {/* EMAIL */}
-          <div className="input-box">
-
-            <FaEnvelope className="icon" />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-            />
-
-          </div>
-
-          {/* PASSWORD */}
-          <div className="input-box">
-
-            <FaLock className="icon" />
-
-            <input
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-
-            <FaEye
-              className="eye"
-              onClick={() =>
-                setShowPassword(
-                  !showPassword
-                )
-              }
-              style={{
-                cursor: "pointer",
-              }}
-            />
-
-          </div>
-
-          {/* LOGIN BUTTON */}
-          <button
-            type="submit"
-            className="login-btn"
-            disabled={loading}
-          >
-            {loading
-              ? "Logging in..."
-              : "Login"}
-          </button>
-
-          {/* MESSAGE */}
-          {message && (
-            <p className="login-message">
-              {message}
+            <p>
+              SMART SELF DRIVE & RENTAL BOOKING
             </p>
+          </div>
+
+          <div className="intro-content">
+
+            <h2>
+              Your Ride.
+              <br />
+              Your Rules.
+            </h2>
+
+            {!started && (
+              <p className="start-text">
+                Ready to ride?
+              </p>
+            )}
+
+            {started && (
+              <p className="starting-text">
+                STARTING YOUR RIDE...
+              </p>
+            )}
+
+          </div>
+
+          {/* REAL BIKE */}
+
+          <div
+            className={`bike-wrapper ${
+              started ? "bike-moving" : ""
+            }`}
+            onClick={startRide}
+          >
+            <img
+              src={bike}
+              alt="RideNGo Bike"
+              className="real-bike"
+            />
+
+            {!started && (
+              <div className="bike-key">
+                <FaKey />
+              </div>
+            )}
+
+          </div>
+
+          {/* START BUTTON */}
+
+          {!started && (
+            <button
+              className="start-bike-btn"
+              onClick={startRide}
+            >
+              <FaMotorcycle />
+              PRESS ENTER TO START
+            </button>
           )}
 
-          {/* GOOGLE */}
-          <button
-            type="button"
-            className="google-btn"
-            onClick={() =>
-              setMessage(
-                "Google login will be added later."
-              )
-            }
-          >
-            <FaGoogle />
+          {/* LOADING */}
 
-            Continue with Google
-          </button>
+          {started && (
+            <div className="ride-loading">
 
-          {/* REGISTER */}
-          <p className="register-text">
+              <div className="loading-text">
+                Loading your journey...
+              </div>
 
-            Don't have an account?{" "}
+              <div className="loading-bar">
+                <div className="loading-progress"></div>
+              </div>
 
-            <Link to="/register">
-              Register
-            </Link>
+              <span>100%</span>
 
-          </p>
+            </div>
+          )}
 
-        </form>
+        </div>
+      )}
 
-      </div>
+      {/* ================= LOGIN ================= */}
 
-      <div className="login-right">
+      {showLogin && (
+        <div className="login-container">
 
-        <h2>RideNGo</h2>
+          <div className="login-left">
 
-        <p>
-          Smart Self Drive Car & Bike Rental Platform
-        </p>
+            <div className="login-logo">
+              Ride<span>N</span>Go
+            </div>
 
-      </div>
+            <h1>
+              Welcome Back 👋
+            </h1>
+
+            <p className="login-subtitle">
+              Login to continue your RideNGo journey.
+            </p>
+
+            <form onSubmit={handleSubmit}>
+
+              {/* EMAIL */}
+
+              <div className="input-box">
+
+                <FaEnvelope className="icon" />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+
+              </div>
+
+              {/* PASSWORD */}
+
+              <div className="input-box">
+
+                <FaLock className="icon" />
+
+                <input
+                  type={
+                    showPassword
+                      ? "text"
+                      : "password"
+                  }
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+
+                <FaEye
+                  className="eye"
+                  onClick={() =>
+                    setShowPassword(
+                      !showPassword
+                    )
+                  }
+                />
+
+              </div>
+
+              {/* LOGIN */}
+
+              <button
+                type="submit"
+                className="login-btn"
+                disabled={loading}
+              >
+                {loading
+                  ? "Logging in..."
+                  : "Login →"}
+              </button>
+
+              {/* MESSAGE */}
+
+              {message && (
+                <p className="login-message">
+                  {message}
+                </p>
+              )}
+
+              {/* GOOGLE */}
+
+              <button
+                type="button"
+                className="google-btn"
+                onClick={() =>
+                  setMessage(
+                    "Google login will be added later."
+                  )
+                }
+              >
+                <FaGoogle />
+                Continue with Google
+              </button>
+
+              {/* REGISTER */}
+
+              <p className="register-text">
+                Don't have an account?{" "}
+
+                <Link to="/register">
+                  Register
+                </Link>
+              </p>
+
+            </form>
+
+          </div>
+
+          <div className="login-right">
+
+            <div className="right-bike">
+              <img
+                src={bike}
+                alt="RideNGo Bike"
+              />
+            </div>
+
+            <h2>
+              Ride<span>N</span>Go
+            </h2>
+
+            <p>
+              Smart Self Drive & Rental Booking
+            </p>
+
+            <div className="ride-lines">
+              Explore.
+              <br />
+              Book.
+              <br />
+              Ride.
+            </div>
+
+          </div>
+
+        </div>
+      )}
 
     </div>
   );
