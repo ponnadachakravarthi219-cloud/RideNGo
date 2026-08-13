@@ -2,9 +2,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import Welcome from "../../components/Welcome/Welcome";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import SummaryCard from "../../components/SummaryCard/SummaryCard";
-// import Services from "../../Services/Services";
+import Services from "../../Services/Services";
 import WhyChoose from "../../WhyChoose/WhyChoose";
-import Fleet from "../../components/Fleet/Fleet";
+// import Fleet from "../../components/Fleet/Fleet";
 import Testimonials from "../../components/Testimonials/Testimonials";
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
       <SummaryCard />
       <Services />
       <WhyChoose />
-      <Fleet />
+      {/* <Fleet /> */}
       <Testimonials />
     </>
   );
