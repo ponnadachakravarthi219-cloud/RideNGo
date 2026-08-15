@@ -1,7 +1,17 @@
 import "./Register.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
+
+import {
+  useState,
+  useEffect,
+} from "react";
+
 import API from "../../Axios/api";
+
 import cityCar from "../../assets/city-car.jpg";
 
 import {
@@ -13,12 +23,26 @@ import {
   FaKey,
 } from "react-icons/fa";
 
+
 function Register() {
+
   const navigate = useNavigate();
 
-  // Animation states
-  const [startAnimation, setStartAnimation] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+
+  /* =========================================
+     ANIMATION STATES
+  ========================================= */
+
+  const [startAnimation, setStartAnimation] =
+    useState(false);
+
+  const [showRegister, setShowRegister] =
+    useState(false);
+
+
+  /* =========================================
+     FORM DATA
+  ========================================= */
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,53 +52,110 @@ function Register() {
     confirmPassword: "",
   });
 
+
   const [message, setMessage] = useState("");
+
   const [loading, setLoading] = useState(false);
 
-  // Press ENTER to start car
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (
-        e.key === "Enter" &&
-        !startAnimation &&
-        !showRegister
-      ) {
-        startCar();
-      }
-    };
 
-    window.addEventListener("keydown", handleKeyDown);
+  /* =========================================
+     START CAR
+  ========================================= */
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [startAnimation, showRegister]);
-
-  // Start car animation
   const startCar = () => {
-    if (startAnimation) return;
+
+    if (startAnimation) {
+      return;
+    }
 
     setStartAnimation(true);
 
-    // Show register form after car animation
+
+    /*
+      CSS animation = 3.2 seconds
+
+      Wait 3.5 seconds and then
+      display registration page.
+    */
+
     setTimeout(() => {
+
       setShowRegister(true);
+
     }, 3500);
+
   };
 
-  const handleChange = (e) => {
+
+  /* =========================================
+     ENTER KEY
+  ========================================= */
+
+  useEffect(() => {
+
+    const handleKeyDown = (event) => {
+
+      if (
+        event.key === "Enter" &&
+        !startAnimation &&
+        !showRegister
+      ) {
+
+        startCar();
+
+      }
+
+    };
+
+
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+
+    return () => {
+
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+
+    };
+
+  }, [startAnimation, showRegister]);
+
+
+  /* =========================================
+     INPUT CHANGE
+  ========================================= */
+
+  const handleChange = (event) => {
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [event.target.name]:
+        event.target.value,
     });
+
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+
+  /* =========================================
+     REGISTER SUBMIT
+  ========================================= */
+
+  const handleSubmit = async (event) => {
+
+    event.preventDefault();
 
     setMessage("");
 
-    // Check empty fields
+
+    /* -----------------------------------------
+       EMPTY FIELD CHECK
+    ----------------------------------------- */
+
     if (
       !formData.name ||
       !formData.email ||
@@ -82,158 +163,338 @@ function Register() {
       !formData.password ||
       !formData.confirmPassword
     ) {
-      setMessage("Please fill all fields");
+
+      setMessage(
+        "Please fill all fields"
+      );
+
       return;
+
     }
 
-    // Check password
-    if (formData.password !== formData.confirmPassword) {
-      setMessage("Passwords do not match");
+
+    /* -----------------------------------------
+       PASSWORD CHECK
+    ----------------------------------------- */
+
+    if (
+      formData.password !==
+      formData.confirmPassword
+    ) {
+
+      setMessage(
+        "Passwords do not match"
+      );
+
       return;
+
     }
 
-    // Check phone
-    if (!/^\d{10}$/.test(formData.phone)) {
-      setMessage("Phone number must contain 10 digits");
+
+    /* -----------------------------------------
+       PHONE CHECK
+    ----------------------------------------- */
+
+    if (
+      !/^\d{10}$/.test(
+        formData.phone
+      )
+    ) {
+
+      setMessage(
+        "Phone number must contain 10 digits"
+      );
+
       return;
+
     }
+
+
+    /* -----------------------------------------
+       API REGISTER
+    ----------------------------------------- */
 
     try {
+
       setLoading(true);
 
-      const response = await API.post("/auth/register", {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-      });
+
+      const response =
+        await API.post(
+          "/auth/register",
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            password: formData.password,
+          }
+        );
+
 
       const data = response.data;
 
-      setMessage(
-        data.message || "Registration successful!"
+
+      console.log(
+        "Register Response:",
+        data
       );
 
+
+      setMessage(
+        data.message ||
+        "Registration successful!"
+      );
+
+
+      /* ---------------------------------------
+         GO TO LOGIN
+      --------------------------------------- */
+
       setTimeout(() => {
+
         navigate("/login");
+
       }, 1000);
 
+
     } catch (error) {
-      console.error("Register Error:", error);
+
+      console.error(
+        "Register Error:",
+        error
+      );
+
+
+      console.log(
+        "Backend Response:",
+        error.response?.data
+      );
+
 
       setMessage(
         error.response?.data?.message ||
         "Registration failed"
       );
 
+
     } finally {
+
       setLoading(false);
+
     }
+
   };
 
+
+  /* =========================================
+     JSX
+  ========================================= */
+
   return (
+
     <div className="register-wrapper">
 
-      {/* ======================================
-          CAR INTRO ANIMATION
-      ====================================== */}
+
+      {/* =================================================
+          FULL SCREEN CAR INTRO
+      ================================================= */}
 
       {!showRegister && (
+
         <div
           className={`car-intro ${
-            startAnimation ? "car-started" : ""
+            startAnimation
+              ? "car-started"
+              : ""
           }`}
         >
 
-          {/* Background lights */}
-          <div className="road-light light-one"></div>
-          <div className="road-light light-two"></div>
-          <div className="road-light light-three"></div>
+
+          {/* -----------------------------------------
+              RED BACKGROUND LIGHTS
+          ----------------------------------------- */}
+
+          <div
+            className="road-light light-one"
+          />
+
+          <div
+            className="road-light light-two"
+          />
+
+          <div
+            className="road-light light-three"
+          />
+
+
+          {/* -----------------------------------------
+              INTRO CONTENT
+          ----------------------------------------- */}
 
           <div className="intro-content">
 
-            <div className="intro-logo">
-              RideNGo
-            </div>
 
-            <p className="intro-title">
+            {/* LOGO */}
+
+            <h1 className="intro-logo">
+              RideNGo
+            </h1>
+
+
+            {/* TITLE */}
+
+            <h2 className="intro-title">
               Start Your Journey
-            </p>
+            </h2>
+
+
+            {/* SUBTITLE */}
 
             <p className="intro-subtitle">
               Smart Self Drive Car & Bike Rental
             </p>
 
-            {/* Car */}
+
+            {/* -------------------------------------
+                CAR
+            ------------------------------------- */}
+
             <div className="car-area">
 
-              <div className="car-glow"></div>
 
-             <img
-  src={cityCar}
-  alt="RideNGo Car"
-  className="animated-car"
-/>
+              {/* RED GLOW */}
+
+              <div className="car-glow" />
+
+
+              {/* CAR IMAGE */}
+
+              <img
+                src={cityCar}
+                alt="RideNGo Car"
+                className="animated-car"
+              />
+
 
             </div>
 
-            {/* Car Key */}
+
+            {/* -------------------------------------
+                START BUTTON
+            ------------------------------------- */}
+
             {!startAnimation && (
+
               <button
+                type="button"
                 className="car-key"
                 onClick={startCar}
               >
+
                 <FaKey />
 
                 <span>
                   START CAR
                 </span>
+
               </button>
+
             )}
 
-            {/* Starting message */}
+
+            {/* -------------------------------------
+                ENTER MESSAGE
+            ------------------------------------- */}
+
             {!startAnimation && (
+
               <div className="press-enter">
-                PRESS <strong>ENTER</strong> TO START
+
+                PRESS{" "}
+
+                <strong>
+                  ENTER
+                </strong>{" "}
+
+                TO START
+
               </div>
+
             )}
 
-            {/* Engine starting */}
+
+            {/* -------------------------------------
+                ENGINE MESSAGE
+            ------------------------------------- */}
+
             {startAnimation && (
+
               <div className="engine-text">
+
                 ENGINE STARTING...
+
               </div>
+
             )}
 
+
           </div>
 
-          {/* Road */}
+
+          {/* -----------------------------------------
+              ROAD
+          ----------------------------------------- */}
+
           <div className="road">
-            <div className="road-line"></div>
+
+            <div className="road-line" />
+
           </div>
+
 
         </div>
+
       )}
 
-      {/* ======================================
+
+      {/* =================================================
           REGISTER PAGE
-      ====================================== */}
+      ================================================= */}
 
       {showRegister && (
+
         <div className="register-container">
+
+
+          {/* =========================================
+              LEFT SIDE
+          ========================================= */}
 
           <div className="register-left">
 
-            <h1>Create Account</h1>
+
+            <h1>
+              Create Account
+            </h1>
+
 
             <p>
-              Register to start booking self-drive vehicles.
+              Register to start booking
+              self-drive vehicles.
             </p>
 
-            <form onSubmit={handleSubmit}>
 
-              {/* NAME */}
+            <form
+              onSubmit={handleSubmit}
+            >
+
+
+              {/* -------------------------------------
+                  NAME
+              ------------------------------------- */}
+
               <div className="input-box">
+
                 <FaUser className="icon" />
 
                 <input
@@ -243,11 +504,19 @@ function Register() {
                   value={formData.name}
                   onChange={handleChange}
                 />
+
               </div>
 
-              {/* EMAIL */}
+
+              {/* -------------------------------------
+                  EMAIL
+              ------------------------------------- */}
+
               <div className="input-box">
-                <FaEnvelope className="icon" />
+
+                <FaEnvelope
+                  className="icon"
+                />
 
                 <input
                   type="email"
@@ -256,11 +525,19 @@ function Register() {
                   value={formData.email}
                   onChange={handleChange}
                 />
+
               </div>
 
-              {/* PHONE */}
+
+              {/* -------------------------------------
+                  PHONE
+              ------------------------------------- */}
+
               <div className="input-box">
-                <FaPhone className="icon" />
+
+                <FaPhone
+                  className="icon"
+                />
 
                 <input
                   type="tel"
@@ -270,11 +547,19 @@ function Register() {
                   value={formData.phone}
                   onChange={handleChange}
                 />
+
               </div>
 
-              {/* PASSWORD */}
+
+              {/* -------------------------------------
+                  PASSWORD
+              ------------------------------------- */}
+
               <div className="input-box">
-                <FaLock className="icon" />
+
+                <FaLock
+                  className="icon"
+                />
 
                 <input
                   type="password"
@@ -283,76 +568,129 @@ function Register() {
                   value={formData.password}
                   onChange={handleChange}
                 />
+
               </div>
 
-              {/* CONFIRM PASSWORD */}
+
+              {/* -------------------------------------
+                  CONFIRM PASSWORD
+              ------------------------------------- */}
+
               <div className="input-box">
-                <FaLock className="icon" />
+
+                <FaLock
+                  className="icon"
+                />
 
                 <input
                   type="password"
                   name="confirmPassword"
                   placeholder="Confirm Password"
-                  value={formData.confirmPassword}
+                  value={
+                    formData.confirmPassword
+                  }
                   onChange={handleChange}
                 />
+
               </div>
 
-              {/* ID CARD */}
+
+              {/* -------------------------------------
+                  ID CARD
+              ------------------------------------- */}
+
               <div className="input-box">
-                <FaIdCard className="icon" />
+
+                <FaIdCard
+                  className="icon"
+                />
 
                 <input
                   type="file"
                   accept="image/*"
                 />
+
               </div>
 
-              {/* REGISTER BUTTON */}
+
+              {/* -------------------------------------
+                  REGISTER BUTTON
+              ------------------------------------- */}
+
               <button
                 type="submit"
                 className="register-btn"
                 disabled={loading}
               >
+
                 {loading
                   ? "Creating Account..."
                   : "Create Account"}
+
               </button>
 
-              {/* MESSAGE */}
+
+              {/* -------------------------------------
+                  MESSAGE
+              ------------------------------------- */}
+
               {message && (
+
                 <p className="register-message">
                   {message}
                 </p>
+
               )}
 
-              {/* LOGIN LINK */}
+
+              {/* -------------------------------------
+                  LOGIN LINK
+              ------------------------------------- */}
+
               <p className="login-link">
+
                 Already have an account?{" "}
 
                 <Link to="/login">
                   Login
                 </Link>
+
               </p>
 
+
             </form>
+
+
           </div>
+
+
+          {/* =========================================
+              RIGHT SIDE
+          ========================================= */}
 
           <div className="register-right">
 
-            <h2>RideNGo</h2>
+            <h2>
+              RideNGo
+            </h2>
 
             <p>
-              Smart Self Drive Car & Bike Rental Platform
+              Smart Self Drive Car & Bike
+              Rental Platform
             </p>
 
           </div>
 
+
         </div>
+
       )}
 
     </div>
+
   );
+
 }
+
 
 export default Register;
