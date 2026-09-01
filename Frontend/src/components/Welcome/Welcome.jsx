@@ -1,4 +1,4 @@
-```jsx
+
 import "./Welcome.css";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,6 @@ function Welcome() {
   return (
     <section className="welcome-section">
 
-      {/* FESTIVE BACKGROUND */}
       <div className="festive-glow glow-one"></div>
       <div className="festive-glow glow-two"></div>
 
@@ -30,7 +29,7 @@ function Welcome() {
 
       <div className="welcome-container">
 
-        {/* ================= LEFT CONTENT ================= */}
+        {/* LEFT CONTENT */}
         <div className="welcome-content">
 
           <span className="festival-tag">
@@ -49,7 +48,7 @@ function Welcome() {
             festival offers with your loved ones.
           </p>
 
-          {/* OFFER BOX */}
+          {/* OFFER */}
           <div className="festival-offer">
 
             <div className="offer-icon">
@@ -59,9 +58,7 @@ function Welcome() {
             <div className="offer-content">
               <span>VINAYAKA CHAVITHI OFFER</span>
 
-              <strong>
-                UP TO 50% OFF
-              </strong>
+              <strong>UP TO 50% OFF</strong>
 
               <small>
                 Use Code: <b>GANESHA50</b>
@@ -89,7 +86,7 @@ function Welcome() {
 
           </div>
 
-          {/* QUICK FEATURES */}
+          {/* FEATURES */}
           <div className="hero-features">
 
             <div className="hero-feature">
@@ -123,25 +120,18 @@ function Welcome() {
 
         </div>
 
-        {/* ================= RIGHT VISUAL ================= */}
+        {/* RIGHT SIDE */}
         <div className="welcome-visual">
 
-          {/* FESTIVAL BADGE */}
           <div className="offer-badge">
-
             <span>🎁</span>
 
             <div>
               <strong>Ganesh Chaturthi</strong>
-
-              <small>
-                Special Offers
-              </small>
+              <small>Special Offers</small>
             </div>
-
           </div>
 
-          {/* MAIN GANESHA */}
           <div className="ganesha-circle">
 
             <div className="ganesha">
@@ -155,7 +145,6 @@ function Welcome() {
 
           </div>
 
-          {/* FLOATING OFFER */}
           <div className="floating-card festival-card-one">
             🎟️ GANESHA50
           </div>
@@ -172,7 +161,6 @@ function Welcome() {
 
       </div>
 
-      {/* DECORATIVE DIYAS */}
       <div className="diya diya-one">🪔</div>
       <div className="diya diya-two">🪔</div>
       <div className="diya diya-three">🪔</div>
@@ -182,4 +170,5 @@ function Welcome() {
 }
 
 export default Welcome;
-```
+
+
