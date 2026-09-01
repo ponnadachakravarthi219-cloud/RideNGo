@@ -1,3 +1,4 @@
+```jsx
 import "./Welcome.css";
 import { useNavigate } from "react-router-dom";
 
@@ -20,43 +21,70 @@ function Welcome() {
 
   return (
     <section className="welcome-section">
+
+      {/* FESTIVE BACKGROUND */}
+      <div className="festive-glow glow-one"></div>
+      <div className="festive-glow glow-two"></div>
+
       <div className="welcome-overlay"></div>
 
       <div className="welcome-container">
 
-        {/* LEFT CONTENT */}
+        {/* ================= LEFT CONTENT ================= */}
         <div className="welcome-content">
 
-          <span className="tag">
-            🚖 Smart Ride Booking Platform
+          <span className="festival-tag">
+            🐘 ✨ GANESH CHATURTHI SPECIAL ✨ 🐘
           </span>
 
           <h1>
-            Book Your Ride
+            Celebrate Ganesh Chaturthi
             <br />
-            <span>Anytime, Anywhere</span>
+            <span>Ride With Happiness</span>
           </h1>
 
-          <p>
-            RideNGo helps you find safe, affordable and comfortable
-            rides with just a few clicks. Travel smarter with
-            convenient online booking.
+          <p className="festival-text">
+            This Vinayaka Chavithi, make every journey special with
+            RideNGo. Book your car, bike or auto and enjoy amazing
+            festival offers with your loved ones.
           </p>
 
+          {/* OFFER BOX */}
+          <div className="festival-offer">
+
+            <div className="offer-icon">
+              🐘
+            </div>
+
+            <div className="offer-content">
+              <span>VINAYAKA CHAVITHI OFFER</span>
+
+              <strong>
+                UP TO 50% OFF
+              </strong>
+
+              <small>
+                Use Code: <b>GANESHA50</b>
+              </small>
+            </div>
+
+          </div>
+
+          {/* BUTTONS */}
           <div className="hero-buttons">
 
             <button
               className="primary-btn"
               onClick={handleBookNow}
             >
-              🚗 Book Now
+              🚗 Book Festival Ride
             </button>
 
             <button
               className="secondary-btn"
               onClick={handleLearnMore}
             >
-              Learn More →
+              Explore Offers →
             </button>
 
           </div>
@@ -66,14 +94,16 @@ function Welcome() {
 
             <div className="hero-feature">
               <span>🚗</span>
+
               <div>
                 <strong>Cars</strong>
-                <small>Self Drive</small>
+                <small>Festival Trips</small>
               </div>
             </div>
 
             <div className="hero-feature">
               <span>🏍️</span>
+
               <div>
                 <strong>Bikes</strong>
                 <small>Easy Rental</small>
@@ -82,6 +112,7 @@ function Welcome() {
 
             <div className="hero-feature">
               <span>🛺</span>
+
               <div>
                 <strong>Autos</strong>
                 <small>Quick Booking</small>
@@ -92,35 +123,63 @@ function Welcome() {
 
         </div>
 
-
-        {/* RIGHT VISUAL */}
+        {/* ================= RIGHT VISUAL ================= */}
         <div className="welcome-visual">
 
+          {/* FESTIVAL BADGE */}
           <div className="offer-badge">
-            <span>🔥</span>
+
+            <span>🎁</span>
+
             <div>
-              <strong>Special Offer</strong>
-              <small>Up to 30% OFF</small>
+              <strong>Ganesh Chaturthi</strong>
+
+              <small>
+                Special Offers
+              </small>
             </div>
+
           </div>
 
-          <div className="vehicle-circle">
-            🚗
+          {/* MAIN GANESHA */}
+          <div className="ganesha-circle">
+
+            <div className="ganesha">
+              🐘
+            </div>
+
+            <div className="ganesha-text">
+              <strong>श्री गणेशाय नमः</strong>
+              <span>Happy Vinayaka Chavithi</span>
+            </div>
+
           </div>
 
-          <div className="floating-card card-one">
-            ⭐ 4.9 Rating
+          {/* FLOATING OFFER */}
+          <div className="floating-card festival-card-one">
+            🎟️ GANESHA50
           </div>
 
-          <div className="floating-card card-two">
-            📍 Nearby Vehicles
+          <div className="floating-card festival-card-two">
+            🎁 50% OFF
+          </div>
+
+          <div className="floating-card festival-card-three">
+            ❤️ Family Rides
           </div>
 
         </div>
 
       </div>
+
+      {/* DECORATIVE DIYAS */}
+      <div className="diya diya-one">🪔</div>
+      <div className="diya diya-two">🪔</div>
+      <div className="diya diya-three">🪔</div>
+
     </section>
   );
 }
 
 export default Welcome;
+```
